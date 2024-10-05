@@ -1,11 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio 1</title>
+    <title>Selecciona una opción</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        select {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
+    <h1>Selecciona una opción</h1>
+    <select id="optionSelect">
+        <option value="">-- Elige una opción --</option>
+        <option value="Ejercicio1.js">Ejercicios 1</option>
+        <option value="Ejercicio2.js">Ejercicios 2</option>
+        <option value="Ejercicio3.js">Ejercicios 3</option>
+        <option value="Ejercicio4.js">Ejercicios 4</option>
+        <option value="Ejercicio5.js">Ejercicios 5</option>
+    </select>
+    <button id="loadButton">Cargar Ejercicio</button>
     
+    <div id="output"></div>
+
+    <script>
+        var outputDiv = document.getElementById('output');
+        var loadButton = document.getElementById('loadButton');
+        var optionSelect = document.getElementById('optionSelect');
+
+        loadButton.onclick = function() {
+            var selectedScript = optionSelect.value;
+
+            if (selectedScript) {
+                outputDiv.innerHTML = '';
+
+                var script = document.createElement('script');
+                script.src = selectedScript;
+
+                script.onload = function() {
+                    outputDiv.innerHTML += '<p>Se ha cargado el script: ' + selectedScript + '. Continúa presionando F12 para ver los resultados</p>';
+                };
+
+                document.body.appendChild(script);
+            } else {
+                outputDiv.innerHTML = '<p>Por favor, selecciona una opción.</p>';
+            }
+        };
+    </script>
 </body>
 </html>
